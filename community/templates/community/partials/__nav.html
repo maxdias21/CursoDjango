@@ -1,0 +1,81 @@
+<nav id="navbar">
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <!-- Perfil -->
+    {% if request.user.is_authenticated %}
+    <div class="dropdown">
+      <a class=" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if profile.photo %}
+        <img style="margin-right: 5px;" src="{{profile.photo.url}}" alt="hugenerd" width="30" height="30"
+          class="rounded-circle">
+        {% endif %}
+        <span class="d-none d-sm-inline mx-1">{{request.user.first_name}} {{request.user.last_name}}</span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" style="color: #363636;" href="{% url 'community:create_community_post_view' %}">Criar post</a></li>
+        <li><a class="dropdown-item" style="color: #363636;" href="{% url 'authors:profile' %}">Meu perfil</a></li>
+        <li><a class="dropdown-item" style="color: #363636;" href="{% url 'community:my_posts' %}">Meus posts</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <form method="POST" action="{% url 'authors:logout' %}">
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{request.user.username}}">
+            <input value="Sair" style="color: #363636;" class="dropdown-item input" type="submit">
+          </form>
+        </li>
+      </ul>
+    </div>
+    {% endif %}
+    <!-- Fim perfil -->
+
+    <a href="{% url 'news:news' %}">Página inicial</a>
+
+    <!-- Criar conta se não estiver logado -->
+    {% if not request.user.is_authenticated %}
+    <a href="{% url 'authors:create_profile_view' %}">
+      <i class="fs-4 bi-house"></i>Entrar
+    </a>
+    {% endif %}
+
+    <a href="{% url 'community:community' %}">
+      <i class="fs-4 bi-house"></i>Comunidade
+    </a>
+
+    <!-- Buscar perfil -->
+    <div class="dropdown">
+      <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Pessoas
+      </a>
+      <ul class="dropdown-menu">
+        <form class="d-flex" role="search" action="{% url 'authors:profile_person' %}">
+          <input name="q" class="form-control" style="width:150px; margin-left:10px; margin-right:5px;" type="search"
+            placeholder="Buscar" aria-label="Search">
+          <button style="margin-right:10px;" class="btn btn-danger" type="submit">Buscar</button>
+        </form>
+      </ul>
+    </div>
+    <!-- Fim buscar perfil -->
+
+    <!-- Buscar posts -->
+    <div class="dropdown">
+      <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Posts
+      </a>
+      <ul class="dropdown-menu">
+        <form class="d-flex" role="search" action="{% url 'community:search_posts' %}">
+          <input name="q" class="form-control" style="width:150px; margin-left:10px; margin-right:5px;" type="search"
+            placeholder="Buscar" aria-label="Search">
+          <button style="margin-right:10px;" class="btn btn-danger" type="submit">Buscar</button>
+        </form>
+      </ul>
+    </div>
+    <!-- Fim buscar posts -->
+
+
+  </div>
+  <div id="main">
+    <button class="openbtn" onclick="openNav()">=</button>
+  </div>
+</nav>

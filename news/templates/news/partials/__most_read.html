@@ -1,0 +1,10 @@
+<div class="most-read news-sep mt-5">
+    <h2>Tags</h2>
+    {% for news in news %}
+        {% if news.tags.all %}
+            {% for tag in news.tags.all %}
+                <a href="{% url 'news:tag' tag.slug %}" class="mt-4">{{tag.name}}</a>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</div>

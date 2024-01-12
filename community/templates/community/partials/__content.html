@@ -1,0 +1,26 @@
+{% load humanize %}
+
+<h1 class="forum-title text-break mb-4 text-center mt-3 mb-3" >Fórum da comunidade</h1>
+{% include 'global/partials/__messages.html' %}
+<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4" style="width: 90%; margin: 0 auto;">
+{% for post in posts %}
+     <div class="card pt-2">
+         {% if post.image %}
+            <a href="{% url 'community:view_community_post' post.slug %}"><img src="{{post.image.url}}" class="img-fluid card-img-top" alt="..."></a>
+         {% endif %}
+        <div class="card-body">
+          <h3 class="card-title">{{post.title}}</h3>
+          <p class="card-text">{{post.description}}</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Publicado {{post.created_at | naturalday}}</small>
+        </div>
+         <div class="d-grid gap-2">
+            <a class="btn btn-success mt-4 mb-2" href="{% url 'community:view_community_post' post.slug %}">Leia mais...</a>
+        </div>
+      </div>
+{% empty %}
+    <h2  style="text-align: center; margin: 0 auto; margin-top: 30px; font-size: 1.5em; word-break: break-word;">Não há nenhum conteúdo no momento :(</h2>
+{% endfor %}
+</div>
+<a href="{% url 'community:all_posts' %}" class="btn btn-primary mt-5" style="display: block; width: 50%; margin: 0 auto;">Veja mais...</a>

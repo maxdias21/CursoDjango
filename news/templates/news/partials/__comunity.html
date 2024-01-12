@@ -1,0 +1,8 @@
+<div class="community news-sep mt-5">
+    <h2 class="mb-4">comunidade</h2>
+    {% for community in community %}
+        <a href="{% url 'community:view_community_post' community.id %}" class="community-title"><p>{{community.title}}</p></a>
+        <p class="community-date">{{community.created_at}}</p>
+        <hr>
+    {% endfor %}
+</div>

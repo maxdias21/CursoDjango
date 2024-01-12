@@ -1,0 +1,75 @@
+h1, h2, h3, h4, p , a {
+    word-break: break-word;
+}
+
+.help-block {
+    color: red;
+    font-size: 0.9em;
+}
+
+
+.container {
+    margin-top: 40px;
+}
+
+body {
+    font-family: Oswald!important;
+}
+
+/* Início Navegação */
+.nav a, .input{
+    font-size: 1.1em;
+    color: #fff;
+}
+
+.nav a:hover, .input:hover {
+    color: #f3dcdcfb;
+}
+
+.nav a:focus, .input {
+    color: #f3dcdcfb;
+}
+
+/* Fim Navegação */
+
+/* Rodapé */
+
+footer a {
+    text-decoration: none;
+    display: block;
+    padding: 5px 0 5px 0;
+    text-align: center;
+}
+
+footer i {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+footer a {
+    font-size: 1.1em;
+    color: #000;
+}
+
+footer a:hover {
+    color: #1f1919;
+    font-weight: 300;
+}
+
+/* Fim Rodapé */
+
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+
+
+/* SideBar */
+
+
+
+
+
+
+

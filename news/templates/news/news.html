@@ -1,0 +1,22 @@
+{% extends 'global/post.html' %}
+
+{% block 'aditional_secondary_content' %}
+<!-- Parte das últimas notícias -->
+<div class="row">
+    <div class="col-12 last-news">
+        <h3 class="mb-4 mt-4">Últimas Notícias</h3>
+        <div class="row">
+            {% for post in last_news %}
+                <div class="col-12 col-lg-3">
+                    <!-- Imagem das últimas notícias -->
+                    <a href="{% url 'news:created_news' post.slug %}"><img src="{{ post.image.url }}"></a>
+
+                    <!-- Título das últimas notícias -->
+                    <a href="{% url 'news:created_news' post.slug %}"><h5 class="text-start">{{ post.title }}</h5></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Fim das últimas notícias -->
+{% endblock 'aditional_secondary_content' %}

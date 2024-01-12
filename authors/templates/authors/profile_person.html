@@ -1,0 +1,40 @@
+{% extends 'global/base.html' %}
+{% block 'title' %}Perfil de {{profile.username.first_name}} {{profile.username.last_name}}{% endblock 'title' %}
+{% load humanize %}
+
+{% block 'content' %}
+<div class="container" id="profile">
+    <div class="row">
+        <div class="col-sm-12 col-md-7">
+            {% include 'global/partials/__messages.html' %}
+            <!-- Foto do perfil -->
+            {% if profile.photo %}
+                <img src="{{profile.photo.url}}">
+            {% endif %}
+
+            <!-- Nome e sobrenome -->
+            <h1 class="float: right">{{profile.username.first_name}} {{profile.username.last_name}}</h1>
+
+            <!-- Biografia -->
+            <i class="fa-solid fa-book"><span class="bio-info">{{profile.description}}</span></i>
+
+            <!-- Último acesso -->
+            <i class="fa-solid fa-right-to-bracket"><span class="bio-info">Último acesso: {{profile.username.last_login | naturalday }}</span></i>
+
+        </div>
+        <div class="col-sm-12 col-md-5 margin-height">
+            <div class="bio">
+                <h2>Sobre</h2>
+                <i class="fa-solid fa-house"><span class="bio-info">Mora em {{ profile.current_city }}</span></i>
+                <i class="fa-solid fa-location-dot"><span class="bio-info">Nasceu em {{ profile.hometown }}</span></i>
+                <i class="fa-solid fa-person"><span class="bio-info">{{ profile.age }} anos</span></i>
+                <i class="fa-solid fa-heart"><span class="bio-info">{{ profile.marital_status }}</span></i>
+                <i class="fa-solid fa-file-signature"><span class="bio-info">Data de criação da conta: {{ profile.username.date_joined | naturalday }}</span></i>
+                <i class="fa-solid fa-user"><a href="{% url 'community:all_post_person' profile.slug %}" class="bio-info">Ver os posts de {{profile.username.first_name}} {{profile.username.last_name}}</a></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock 'content' %}

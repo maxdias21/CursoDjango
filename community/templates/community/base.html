@@ -1,0 +1,28 @@
+{% load static %}
+<title>{% block 'title' %}Bem-vindo à nossa comunidade{% endblock 'title' %}</title>
+{% include 'global/partials/__head.html' %}
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Navbar -->
+            {% include 'community/partials/__nav.html' %}
+            <!-- Fim navar -->
+                <!-- Conteúdo principal -->
+                <div class="col">
+                    {% block 'additional_content' %}
+                    {% endblock 'additional_content' %}
+                </div>
+                <!-- Fim Conteúdo principal -->
+        </div>
+        <!-- Rodapé -->
+        {% include 'global/partials/__footer.html' %}
+        <!-- Fim Rodapé -->
+    </div>
+    <script src="{% static 'global/static/script/script.js' %}"></script>
+</body>
+
+
+
+
+

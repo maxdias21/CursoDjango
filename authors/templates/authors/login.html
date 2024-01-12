@@ -1,0 +1,39 @@
+{% extends 'global/base.html' %}
+{% block 'title' %}Faça seu login{% endblock 'title' %}
+{% load bootstrap %}
+{% block 'content' %}
+
+    <script>create_id_body('login')</script>
+
+    <section class="container-fluid">
+        <div class="row main-form-body">
+            <div class="col-md-6">
+                {% include 'authors/partials/__description.html' %}
+            </div>
+            <div class="col-md-6">
+                <div class="form-login">
+                    <form class="main-form" action="{{form_action}}" method="POST">
+                        <h3>Entre com seu usuário/senha</h3>
+                        {% csrf_token %}
+                        {% include 'global/partials/__messages.html' %}
+                        {% for field in form %}
+                            {{field|bootstrap}}
+
+                            {% if field.help_text %}
+                                {{field.help_text}}
+                            {% endif %}
+
+                            {{field.errors}}
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary login">Entrar</button>
+                        <hr>
+                        <div class="sep">
+                            <a class="forgot-password" href="">Esqueceu a senha?</a>
+                            <a class="btn btn-success register" href="{% url 'authors:register_view' %}">Cadastrar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock 'content' %}

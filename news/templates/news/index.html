@@ -1,0 +1,22 @@
+{% extends 'global/base.html' %}
+{% block 'content' %}
+{% include 'news/partials/__main_news.html' %}
+
+<!-- Início conteúdo secundário -->
+<section class="container">
+    <div class="row">
+        <div class="col-md-7">
+            {% include 'news/partials/__secondary_news.html' %}
+        </div>
+        <div class="col-1"></div>
+        <div class="col-md-4">
+            {% include 'news/partials/__new_users.html' %}
+            {% include 'news/partials/__comunity.html' %}
+            {% include 'news/partials/__most_read.html' %}
+        </div>
+    </div>
+</section>
+<!-- Fim conteúdo secundário -->
+{% endblock 'content' %}
+
+

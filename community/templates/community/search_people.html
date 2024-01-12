@@ -1,0 +1,54 @@
+{% extends 'community/base.html' %}}
+{% block 'title' %}Buscar pessoas com o termo "{{title}}"{% endblock 'title' %}
+{% load humanize %}
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <!-- Navbar -->
+            {% include 'community/partials/__nav.html' %}
+            <!-- Fim navar -->
+            {% block 'additional_content' %}
+                <!-- Conteúdo principal -->
+                    <h1 class="forum-title mb-4 text-center text-break mt-3 mb-3" >Resultados encontrados com o termo "{{search_term}}"</h1>
+                    {% include 'global/partials/__messages.html' %}
+                    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        {% for profiles in posts %}
+                             <div class="col">
+                                <div class="card h-100">
+                                    {% if profiles.profile.photo %}
+                                      <img src="{{profiles.profile.photo.url}}" class="card-img-top" alt="...">
+                                    {% endif %}
+                                      <div class="card-body">
+                                        <h5 class="card-title">{{profiles.first_name}} {{profiles.last_name}}</h5>
+                                        <p class="card-text">{{profiles.profile.description}}.</p>
+                                      </div>
+                                      <div class="card-footer">
+                                        <small class="text-muted">Último acesso {{profiles.last_login | naturalday}}</small>
+                                        {% if profiles.profile.profile_status == 'Público' %}
+                                            <div class="text-muted mt-3">Status do perfil <strong>público</strong></div>
+                                              <div class="d-grid gap-2">
+                                                <a href="{% url 'authors:profile_complete_person' profiles.profile.slug %}" class="btn btn-success mt-4 mb-2">Ver perfil completo</a>
+                                             </div>
+                                        {% else %}
+                                          <div class="text-muted mt-3">Status do perfil <strong>privado</strong></div>
+                                            <div class="d-grid gap-2">
+                                                <a href="{% url 'authors:profile_complete_person' profiles.profile.slug %}" class="btn btn-danger text-center disabled mt-4 mb-2">Perfil privado</a>
+                                            </div>
+                                      {% endif %}
+                                      </div>
+                                </div>
+                             </div>
+                        {% empty %}
+                            <h2  style="text-align: center; margin: 0 auto; margin-top: 30px; font-size: 1.5em; word-break: break-word;">Não há nenhum conteúdo no momento :(</h2>
+                        {% endfor %}
+                    </div>
+                <div class="mt-3">{% include 'global/partials/__pagination.html' %}</div>
+                <!-- Fim Conteúdo principal -->
+            {% endblock 'additional_content' %}
+        <!-- Rodapé -->
+        {% include 'global/partials/__footer.html' %}
+        <!-- Fim Rodapé -->
+        </div>
+    </div>
+</body>
+

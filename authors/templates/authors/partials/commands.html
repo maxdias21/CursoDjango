@@ -1,0 +1,74 @@
+{% extends 'global/base.html' %}
+
+{% block 'content' %}
+
+<div class="container">
+    <h4>Notícias usando filter</h4>
+{% for filter in filter %}
+    <p>{{filter}}</p>
+{% endfor %}
+
+    <h4>Notícias na ordem descrescente (usando order_by)</h4>
+    {% for filter in filter_with_order_by %}
+        <p>{{filter}}</p>
+    {% endfor %}
+
+    <h4>Pegar a primeira notícia usando o comando "First"</h4>
+    <p>{{first_news}}</p>
+
+    <h4>Pegar a última notícia usando o comando "Last"</h4>
+    <p>{{last_news}}</p>
+
+    <h4>Erro de objeto não existe, usando GET</h4>
+    <p>{{news_not_exists}}</p>
+
+    <h4>Fazer buscar usando Q (ou)</h4>
+    {% for news_using_q in news_using_q %}
+        <p>{{news_using_q}}</p>
+    {% endfor %}
+
+    <h4>Busca usando "values()"</h4>
+    {% for news_using_values in news_using_values %}
+        <p>{{news_using_values}}</p>
+    {% endfor %}
+
+    <h4>Busca usando "only()"</h4>
+    {% for news_using_only in news_using_only %}
+        <p>{{news_using_only.author}}</p>
+        <p>{{news_using_only.title}}</p>
+        <p>{{news_using_only.created_at}}</p>
+    {% endfor %}
+
+    <h4>Busca usando "defer()"</h4>
+    {% for news_using_defer in news_using_defer %}
+        <p>{{news_using_defer}}</p>
+    {% endfor %}
+
+    <h4>Quantas notícias eu tenho no meu site: {{count_news}}</h4>
+
+    <h4>Quantas notícias publicadas eu tenho no meu site: {{count_news_published}}</h4>
+
+    <h4>Todas as notícias cujo id é maior que 6</h4>
+    {% for gt_news in gt_news %}
+        <p>{{gt_news}}</p>
+    {% endfor %}
+
+    <h4>Todas as notícias cujo id é maior OU IGUAL a 6</h4>
+    {% for gte_news in gte_news %}
+        <p>{{gte_news}}</p>
+    {% endfor %}
+
+    <h4>Usando annotate para criar full name</h4>
+    {% for news_full_name_person in news_full_name_person %}
+        <p>{{news_full_name_person.author__full_name}}</p>
+    {% endfor %}
+
+    <h4>Usando models.Manager</h4>
+    {% for news_model_manager in news_model_manager %}
+        <p>{{news_model_manager}}</p>
+    {% endfor %}
+
+
+</div>
+
+{% endblock 'content' %}

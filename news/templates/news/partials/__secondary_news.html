@@ -1,0 +1,18 @@
+{% load i18n %}
+
+{% for news in news %}
+<div class="row" id="secondary-news">
+    <div class="col-5">
+        <a href="{% url 'news:created_news' news.slug %}"><img class="img-fluid" src="{{news.image.url}}" style="height:200px; width:250px"></a>
+    </div>
+    <div class="col-7">
+        <a href="{% url 'news:created_news' news.slug %}"><h3>{{news.title}}</h3></a>
+        <p>{{news.description}}</p>
+        <p class="secondary-news-date">{{news.created_at}}</p>
+    </div>
+</div>
+<hr>
+{% empty %}
+    <h1 class="text-center mb-5">{% translate 'Nothing here' %} :(</h1>
+{% endfor %}
+<a href="{% url 'news:all_news' %}" class="btn btn-danger mb-4" style="display: block; width: 100%">{% translate 'See more' %}...</a>

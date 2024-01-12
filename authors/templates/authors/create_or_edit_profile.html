@@ -1,0 +1,30 @@
+{% extends 'global/base.html' %}
+{% block 'title' %}Faça seu login{% endblock 'title' %}
+{% load bootstrap %}
+{% block 'content' %}
+
+<div class="container create-profile">
+    <div class="row">
+        <div class="col">
+            <div>
+                <h3>Alterar minhas informações pessoais</h3>
+                <form class="main-form" action="{{form_action}}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% include 'global/partials/__messages.html' %}
+                    {% for field in form %}
+
+                        {{field|bootstrap}}
+
+                        {% if field.help_text %}
+                            {{field.help_text}}
+                        {% endif %}
+
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary mt-3" style="width: 100%;">Alterar perfil</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock 'content' %}

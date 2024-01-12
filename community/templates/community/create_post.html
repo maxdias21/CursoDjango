@@ -1,0 +1,21 @@
+{% extends 'global/base.html' %}
+{% block 'title' %}Crie um post e apoie a comunidade{% endblock 'title' %}
+{% load bootstrap %}
+{% block 'content' %}
+<section class="container">
+    <div id="comunity-post-create">
+        <div class="col-12">
+            <h2 class="text-break" style="word-break: break-all;">Crie seu post e contribua para a comunidade</h2>
+            <p class="attention text-break" style="word-break: break-all;">Atenção: Avaliamos todos os posts antes de serem publicados para a comunidade 😉</p>
+            {% include 'global/partials/__messages.html' %}
+            <form class="main-form text-break" action="{{form_action}}" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    {{field | bootstrap}}
+                {% endfor %}
+                <button type="submit" class="btn btn-primary mt-4">Criar post</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock 'content' %}

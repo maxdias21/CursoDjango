@@ -1,0 +1,31 @@
+{% extends 'global/base.html' %}
+{% block 'title' %}Faça seu cadastro - é gratis{% endblock 'title' %}
+{% load bootstrap %}
+{% block 'content' %}
+
+    <script>create_id_body('register')</script>
+
+    <section class="container-fluid">
+        <div class="row main-form-body">
+            <div class="col-12 col-md-6">
+                {% include 'authors/partials/__description.html' %}
+            </div>
+            <div class="col-12 col-md-6">
+                <div>
+                    <form class="main-form" action="{% url 'authors:register_create' %}" method="POST">
+                        <h2>Cadastre-se</h2>
+                        <p>É rápido e fácil 😄</p>
+                        {% csrf_token %}
+                        {% include 'global/partials/__messages.html' %}
+                        {% for field in form %}
+
+                            {{field | bootstrap}}
+
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary login">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock 'content' %}

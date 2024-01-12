@@ -1,0 +1,67 @@
+{% load static %}
+
+<!-- Início navegação -->
+<nav class="navbar navbar-expand-md bg-dark pt-3 pb-3">
+    <div class="container-fluid nav ms-4">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <!-- Ícone navbar  -->
+            <span><i class="fa-solid fa-bars" style="color: #fffffa;"></i></span>
+            <!-- Ícone navbar  -->
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'news:news' %}">Notícias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'community:community' %}">Comunidade</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {% if user.is_authenticated and user.first_name %}
+                            {{user.first_name}} {{user.last_name}}
+                        {% elif user.is_authenticated and not user.first_name %}
+                            Meu perfil
+                        {% else %}
+                            Entrar/Cadastrar
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu bg-dark">
+                        {% if user.is_authenticated %}
+                        <li><a class="dropdown-item bg-dark" href="{% url 'authors:profile' %}">Perfil</a></li>
+                        <form method="POST" action="{% url 'authors:logout' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="username" value="{{request.user.username}}">
+                            <input value="Sair" class="dropdown-item bg-dark input" type="submit">
+                        </form>
+
+                        {% else %}
+                            <li><a class="dropdown-item bg-dark" href="{% url 'authors:login_view' %}">Entrar</a></li>
+                            <li><a class="dropdown-item bg-dark" href="{% url 'authors:register_view' %}">Registrar</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Útils
+                    </a>
+                    <ul class="dropdown-menu bg-dark">
+                        <li><a class="dropdown-item bg-dark" href="#">Planilhas Excel</a></li>
+                       <li><a class="dropdown-item bg-dark" href="#">Meus Aplicativos em Python</a></li>
+                        <li><a class="dropdown-item bg-dark" href="#">Base de Dados com Python</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form action="{% url 'news:search' %}" class="d-flex" role="search">
+                <input class="form-control me-2" name="q"  placeholder="buscar notícias..." type="search" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<!-- Fim navegação -->

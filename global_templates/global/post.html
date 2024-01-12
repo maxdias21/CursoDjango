@@ -1,0 +1,55 @@
+{% extends 'global/base.html' %}
+{% block 'title' %}{{title}}{% endblock 'title' %}
+{% load humanize %}
+{% block 'content' %}
+
+<div id="main-news" class="container">
+    <div class="row">
+        <div>
+            <div class="col-md-12 col-sm-12 col-lg-11" style="margin: 0 auto;">
+                <!-- Título -->
+                <h1 class="text-start">{{post.title}}</h1>
+
+                <!-- Descrição -->
+                <h2 class="text-start">{{post.description}}</h2>
+
+                <!-- Redes sociais -->
+                <div class="social-media-icon">
+                    <a href=""><i class="fa-brands fa-whatsapp" style="color: #22511f;"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter" style="color: #0995ec;"></i></a>
+                    <a href=""><i class="fa-brands fa-facebook" style="color: #0b61f4;"></i></a>
+                    <a href=""><i class="fa-brands fa-telegram" style="color: #2974f5;"></i></a>
+                    <a href=""><i class="fa-solid fa-envelope" style="color: #f54747;"></i></a>
+                </div>
+
+                <div class="informations">
+                    <!-- Autor -->
+                    {% if post.author.profile %}
+                        <a href="{% url 'authors:profile_complete_person' post.author.profile.id %}" class="author">Criado por {{post.author.first_name}} {{post.author.last_name}}</a>
+                    {% else %}
+                        <p class="author">Criador do conteúdo deletou a conta</p>
+                    {% endif %}
+                    <!-- Post data criação -->
+                    <p>{{post.created_at | naturalday}}</p>
+                </div>
+
+                <hr>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-lg-10" style="margin: 0 auto;">
+                <!-- Imagem (se tiver) -->
+                {% if post.image %}
+                    <img class="mb-5 mt-5" src="{{post.image.url}}" height="500">
+                {% endif %}
+                <!-- Conteúdo principal -->
+                <div class="main-content">{{post.content | safe}}</div>
+
+                {% block 'additional_main_content' %}
+                {% endblock 'additional_main_content' %}
+            </div>
+        </div>
+        {% block 'aditional_secondary_content' %}{% endblock 'aditional_secondary_content' %}
+    </div>
+</div>
+
+{% endblock 'content' %}

@@ -1,0 +1,9 @@
+{% load static %}
+<title>{% block 'title' %}Notícias{% endblock 'title' %}</title>
+{% include 'global/partials/__head.html' %}
+
+<body>
+    {% include 'global/partials/__nav.html' %}
+    {% block 'content' %} {% endblock 'content' %}
+    {% include 'global/partials/__footer.html' %}
+</body>

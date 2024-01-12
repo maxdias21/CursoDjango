@@ -1,0 +1,110 @@
+/* Início login */
+.main-form-body {
+    padding-top:100px;
+    padding-bottom: 50px;
+    background-image: url('https://img.freepik.com/fotos-gratis/parede-de-concreto_53876-92803.jpg?w=740&t=st=1697578655~exp=1697579255~hmac=bb4c678fb2017d22a6fd5813ab269a83c0696ae4657712f5ea3f719b9057ccf9');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main-form-body .main-form input {
+    margin-bottom: 10px;
+}
+
+.main-form-body .main-form button.login {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.main-form-body .main-form .register, .forgot-password {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+
+.forgot-password {
+    font-weight: 500;
+}
+
+.main-form-body .main-form .sep {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.main-form-body .main-form {
+    background-color: rgba(233, 200, 200, 0.068);
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.create-profile .help-block , .main-form-body .help-block {
+    color: red;
+    font-size: 0.9em;
+    position: relative;
+    bottom:8px;
+}
+
+.main-form label {
+
+}
+
+.description img {
+    float: right;
+    width: 80%;
+    height: 80%;
+}
+
+/* Fim login */
+
+/* Início perfil */
+
+#profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50px;
+    float: left;
+    margin-right:20px;
+}
+
+#profile .bio-info {
+    margin-left: 10px;
+    font-size: 1.1em;
+    font-weight: 100;
+    font-family: "Arial"
+}
+
+#profile h2 {
+    font-size: 1.5em;
+    margin-bottom: 25px;
+}
+
+#profile i {
+    display: block;
+    margin-top: 20px;
+}
+
+#profile .bio {
+    float: right;
+}
+
+#profile .public-profile, #profile .private-profile {
+    font-size:0.9em;
+    color: green;
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+    #profile .margin-height {
+        margin-top: 50px
+    }
+
+    #profile .bio {
+        float: left;
+    }
+ }
+
+
+/* Fim perfil */

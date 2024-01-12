@@ -1,0 +1,28 @@
+#comunity-post-create .attention {
+    font-size: 1.1em;
+    text-decoration: underline;
+    color: red;
+}
+
+.help-block {
+    color: red;
+    font-size: 0.9em;
+}
+
+
+
+@media (min-width: 0px) and (max-width: 768px) {
+    .forum-title {
+        text-align: center;
+        letter-spacing: -0.5px;
+        font-size: 1.6em;
+    }
+ }
+
+ @media (min-width: 768px) and (max-width: 992px) {
+    .forum-title {
+        text-align: center;
+        letter-spacing: -0.5px;
+        font-size: 2em;
+    }
+ }

@@ -1,0 +1,6 @@
+<div class="new-users news-sep">
+    <h2>boas vindas</h2>
+    {% for user in new_users %}
+        <p class="blinking-text" style="font-weight: 600"><a href="{% url 'authors:profile_complete_person' user.slug %}" style="text-decoration: none; color: #fff;">{{user.username.first_name}} {{user.username.last_name}}</a></p>
+    {% endfor %}
+</div>

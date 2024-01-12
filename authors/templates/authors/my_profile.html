@@ -1,0 +1,47 @@
+{% extends 'global/base.html' %}
+{% block 'title' %}{{title}}{% endblock 'title' %}
+{% block 'content' %}
+<div class="container" id="profile">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            {% include 'global/partials/__messages.html' %}
+            <!-- Foto do perfil -->
+            {% if profile.photo %}
+                <img src="{{profile.photo.url}}">
+            {% endif %}
+
+            <!-- Nome e sobrenome -->
+            <h1 class="float: right">{{request.user.first_name}} {{request.user.last_name}}</h1>
+
+            <!-- Biografia -->
+            <i class="fa-solid fa-book"><span class="bio-info">{{profile.description}}</span></i>
+
+            <!-- Último acesso -->
+            <i class="fa-solid fa-right-to-bracket"><span class="bio-info">Último acesso: {{ request.user.last_login }}</span></i>
+
+        </div>
+        <div class="col-sm-12 col-md-6 margin-height">
+            <div class="bio">
+                <h2>Sobre</h2>
+                <i class="fa-solid fa-house"><span class="bio-info">Mora em {{ profile.current_city }}</span></i>
+                <i class="fa-solid fa-location-dot"><span class="bio-info">Nasceu em {{ profile.hometown }}</span></i>
+                <i class="fa-solid fa-person"><span class="bio-info">{{ profile.age }} anos</span></i>
+                <i class="fa-solid fa-heart"><span class="bio-info">{{ profile.marital_status }}</span></i>
+                <i class="fa-solid fa-file-signature"><span class="bio-info">Data de criação da conta: {{ request.user.date_joined }}</span></i>
+                {% if profile.get_profile_status_display == 'Público' %}
+                     <i class="fa-solid fa-lock-open"><span class="bio-info">Meu perfil é público</span></i>
+                    <span class="public-profile">Qualquer pessoa registrada nesse site poderá acessar seu perfil</span>
+                {% else %}
+                    <i class="fa-solid fa-lock"><span class="bio-info">Meu perfil é privado</span></i>
+                    <span class="private-profile">Com o perfil privado, ninguém poderá acessar seu perfil</span>
+                {% endif %}
+
+                <i class="fa-solid fa-user"><a href="{% url 'authors:profile_edit' %}" class="bio-info">Alterar minhas informações pessoais</a></i>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock 'content' %}

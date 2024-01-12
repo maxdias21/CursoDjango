@@ -1,0 +1,36 @@
+<!-- Início conteúdo principal -->
+<section class="container" id="news">
+    <div class="mt-4">{% include 'global/partials/__messages.html' %}</div>
+    <div class="row">
+        <!-- Notícia principal -->
+        {% if first_news %}
+            <div class="col-12 col-lg-6 news-sep" style="height:600px;">
+                <div style="position: relative;">
+                    <a href="{% url 'news:created_news' first_news.slug %}"><img src="{{first_news.image.url}}"></a>
+                    <span class="img-text">{{first_news.description}}</span>
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Notícia principal esquerda -->
+        <div class="col-12 col-lg-6">
+            <!-- Notícia principal topo -->
+            {% if second_news %}
+                <div class="col divider-bottom-size news-sep" style="position: relative;">
+                    <a href="{% url 'news:created_news' second_news.slug %}"><img src="{{second_news.image.url}}"></a>
+                    <span class="img-text">{{first_news.description}}</span>
+                </div>
+            {% endif %}
+            <div class="div-height"></div>
+            <!-- Notícia principal baixo -->
+            {% if third_news %}
+                <div class="col divider-top-size news-sep" style="position: relative;">
+                    <a href="{% url 'news:created_news' third_news.slug %}"><img src="{{third_news.image.url}}"></a>
+                    <span class="img-text">{{first_news.description}}</span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Fim conteúdo principal -->
